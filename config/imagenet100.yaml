@@ -1,0 +1,93 @@
+seed_everything: 1
+trainer:
+  logger: true
+  checkpoint_callback: false
+  callbacks: null
+  default_root_dir: null
+  gradient_clip_val: 0.0
+  gradient_clip_algorithm: norm
+  process_position: 0
+  num_nodes: 1
+  num_processes: 1
+  devices: null
+  gpus: -1
+  auto_select_gpus: false
+  tpu_cores: null
+  ipus: null
+  log_gpu_memory: null
+  progress_bar_refresh_rate: null
+  overfit_batches: 0.0
+  track_grad_norm: -1
+  check_val_every_n_epoch: 30
+  fast_dev_run: false
+  accumulate_grad_batches: 1
+  max_epochs: 120
+  min_epochs: null
+  max_steps: null
+  min_steps: null
+  max_time: null
+  limit_train_batches: 1.0
+  limit_val_batches: 1.0
+  limit_test_batches: 1.0
+  limit_predict_batches: 1.0
+  val_check_interval: 1.0
+  flush_logs_every_n_steps: 100
+  log_every_n_steps: 50
+  accelerator: null
+  sync_batchnorm: false
+  precision: 32
+  weights_summary: top
+  weights_save_path: null
+  num_sanity_val_steps: 0
+  truncated_bptt_steps: null
+  resume_from_checkpoint: null
+  profiler: null
+  benchmark: true
+  deterministic: true
+  reload_dataloaders_every_n_epochs: 0
+  reload_dataloaders_every_epoch: false
+  auto_lr_find: false
+  replace_sampler_ddp: false
+  terminate_on_nan: false
+  auto_scale_batch_size: false
+  prepare_data_per_node: true
+  plugins: null
+  amp_backend: native
+  amp_level: O2
+  distributed_backend: null
+  move_metrics_to_cpu: false
+  multiple_trainloader_mode: max_size_cycle
+  stochastic_weight_avg: false
+model:
+  base_lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0001
+  lr_factor: 0.1
+  milestones:
+  - 30
+  - 60
+  finetuning_epochs: 30
+  finetuning_lr: 0.005
+  lambda_ce: 0.5
+  lambda_hkd: 0.15
+  lambda_rkd: 0.5
+  num_inv_iters: 10000
+  inv_lr: 0.001
+  inv_tau: 1000.0
+  inv_alpha_pr: 0.001
+  inv_alpha_rf: 50.0
+  inv_resume_from: null
+data:
+  # Please replace the root with your own dataset root path
+  root: ./data
+  dataset: imagenet100
+  batch_size: 64
+  num_workers: 8
+  val_splits: 0
+  val_seed: 42
+  num_tasks: 10
+  current_task: 0
+  # Following is the class order used in our experiments
+  class_order: [68, 56, 78, 8, 23, 84, 90, 65, 74, 76, 40, 89, 3, 92, 55, 9, 26, 80, 43, 38, 58, 70, 77, 1, 85, 19, 17, 50, 28, 53, 13, 81, 45, 82, 6, 59, 83, 16, 15, 44, 91, 41, 72, 60, 79, 52, 20, 10, 31, 54, 37, 95, 14, 71, 96, 98, 97, 2, 64, 66, 42, 22, 35, 86, 24, 34, 87, 21, 99, 0, 88, 27, 18, 94, 11, 12, 47, 25, 30, 46, 62, 69, 36, 61, 7, 63, 75, 5, 32, 4, 51, 48, 73, 93, 39, 67, 29, 49, 57, 33]
+  init_task_splits: 0
+  test_mode: seen

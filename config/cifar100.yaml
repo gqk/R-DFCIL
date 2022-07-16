@@ -1,0 +1,95 @@
+seed_everything: 1
+trainer:
+  logger: true
+  checkpoint_callback: false
+  callbacks: null
+  default_root_dir: null
+  gradient_clip_val: 0.0
+  gradient_clip_algorithm: norm
+  process_position: 0
+  num_nodes: 1
+  num_processes: 1
+  devices: null
+  gpus: -1
+  auto_select_gpus: false
+  tpu_cores: null
+  ipus: null
+  log_gpu_memory: null
+  progress_bar_refresh_rate: null
+  overfit_batches: 0.0
+  track_grad_norm: -1
+  check_val_every_n_epoch: 40
+  fast_dev_run: false
+  accumulate_grad_batches: 1
+  max_epochs: 200
+  min_epochs: null
+  max_steps: null
+  min_steps: null
+  max_time: null
+  limit_train_batches: 1.0
+  limit_val_batches: 1.0
+  limit_test_batches: 1.0
+  limit_predict_batches: 1.0
+  val_check_interval: 1.0
+  flush_logs_every_n_steps: 100
+  log_every_n_steps: 50
+  accelerator: null
+  sync_batchnorm: false
+  precision: 32
+  weights_summary: top
+  weights_save_path: null
+  num_sanity_val_steps: 0
+  truncated_bptt_steps: null
+  resume_from_checkpoint: null
+  profiler: null
+  benchmark: true
+  deterministic: true
+  reload_dataloaders_every_n_epochs: 0
+  reload_dataloaders_every_epoch: false
+  auto_lr_find: false
+  replace_sampler_ddp: false
+  terminate_on_nan: false
+  auto_scale_batch_size: false
+  prepare_data_per_node: true
+  plugins: null
+  amp_backend: native
+  amp_level: O2
+  distributed_backend: null
+  move_metrics_to_cpu: false
+  multiple_trainloader_mode: max_size_cycle
+  stochastic_weight_avg: false
+model:
+  base_lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
+  lr_factor: 0.1
+  milestones:
+  - 80
+  - 120
+  finetuning_epochs: 40
+  finetuning_lr: 0.005
+  lambda_ce: 0.5
+  lambda_hkd: 0.15
+  lambda_rkd: 0.5
+  num_inv_iters: 5000
+  inv_lr: 0.001
+  inv_tau: 1000.0
+  inv_alpha_pr: 0.001
+  inv_alpha_rf: 50.0
+  inv_resume_from: null
+data:
+  # Please replace the root with your own dataset root path
+  root: ./data
+  dataset: cifar100
+  batch_size: 128
+  num_workers: 4
+  val_splits: 0
+  val_seed: 42
+  num_tasks: 10
+  current_task: 0
+  # Following are class orders used by ABD and our R-DFCIL
+  class_order: [23, 8, 11, 7, 48, 13, 1, 91, 94, 54, 16, 63, 52, 41, 80, 2, 47, 87, 78, 66, 19, 6, 24, 10, 59, 30, 22, 29, 83, 37, 93, 81, 43, 99, 86, 28, 34, 88, 44, 14, 84, 70, 4, 20, 15, 21, 31, 76, 57, 67, 73, 50, 69, 25, 98, 46, 96, 0, 72, 35, 58, 92, 3, 95, 56, 90, 26, 40, 55, 89, 75, 71, 60, 42, 9, 82, 39, 18, 77, 68, 32, 79, 12, 85, 36, 17, 64, 27, 74, 45, 61, 38, 51, 62, 65, 33, 5, 53, 97, 49]
+  # class_order: [53, 37, 65, 51, 4, 20, 38, 9, 10, 81, 44, 36, 84, 50, 96, 90, 66, 16, 80, 33, 24, 52, 91, 99, 64, 5, 58, 76, 39, 79, 23, 94, 30, 73, 25, 47, 31, 45, 19, 87, 42, 68, 95, 21, 7, 67, 46, 82, 11, 6, 41, 86, 88, 70, 18, 78, 71, 59, 43, 61, 22, 14, 35, 93, 56, 28, 98, 54, 27, 89, 1, 69, 74, 2, 85, 40, 13, 75, 29, 34, 92, 0, 77, 55, 49, 3, 62, 12, 26, 48, 83, 60, 57, 63, 15, 32, 8, 97, 72, 17]
+  # class_order: [0, 76, 61, 63, 1, 71, 2, 6, 16, 19, 13, 24, 49, 12, 75, 9, 83, 72, 5, 41, 99, 45, 89, 53, 79, 18, 52, 92, 14, 42, 68, 44, 38, 84, 36, 17, 31, 15, 70, 88, 25, 97, 51, 73, 66, 37, 78, 33, 80, 26, 82, 28, 60, 35, 43, 57, 23, 58, 91, 8, 62, 93, 98, 86, 29, 30, 22, 95, 67, 54, 48, 40, 59, 96, 3, 87, 34, 64, 56, 69, 47, 65, 50, 81, 55, 20, 74, 4, 90, 27, 77, 32, 39, 85, 94, 21, 46, 10, 11, 7]
+  init_task_splits: 0
+  test_mode: seen
